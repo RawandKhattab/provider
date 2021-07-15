@@ -8,6 +8,7 @@ import 'package:taskprovider/product_model.dart';
 class ProductsWidget extends StatelessWidget {
   ProductModel productModel;
   int index;
+
   bool favouriteWidget;
   ProductsWidget(this.productModel, this.index, [this.favouriteWidget = false]);
   @override
@@ -21,7 +22,7 @@ class ProductsWidget extends StatelessWidget {
             height: 200,
             width: MediaQuery.of(context).size.width,
             child: Image.network(
-              productModel.imageUrl,
+              Provider.of<MyProvider>(context).products[index].imageUrl,
               fit: BoxFit.cover,
             ),
           ),
@@ -34,7 +35,11 @@ class ProductsWidget extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Provider.of<MyProvider>(context, listen: false)
-                        .addToFavourite(index);
+                        .addToFavourite(
+                            Provider.of<MyProvider>(context, listen: false)
+                                .products
+                                .where((element) => false)
+                                .first);
                   },
                   child: CircleAvatar(
                     radius: 30,

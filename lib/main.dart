@@ -5,8 +5,8 @@ import 'package:taskprovider/my_provider.dart';
 import 'package:taskprovider/products_widjet.dart';
 
 void main() {
-  runApp(
-      Provider<MyProvider>(create: (context) => MyProvider(), child: MyApp()));
+  runApp(ChangeNotifierProvider<MyProvider>(
+      create: (context) => MyProvider(), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
